@@ -1,6 +1,7 @@
-"use client";;
-import { cn } from "@/lib/utils";
+"use client";
+import { cn } from "./src/lib/utils";
 import React, { useEffect, useState, useRef } from "react";
+
 
 const getRandomStartPoint = () => {
   const side = Math.floor(Math.random() * 4);
@@ -19,6 +20,7 @@ const getRandomStartPoint = () => {
       return { x: 0, y: 0, angle: 45 };
   }
 };
+
 export const ShootingStars = ({
   minSpeed = 10,
   maxSpeed = 30,
@@ -93,7 +95,7 @@ export const ShootingStars = ({
   }, [star]);
 
   return (
-    (<svg ref={svgRef} className={cn("w-full h-full absolute inset-0", className)}>
+    <svg ref={svgRef} className={cn("w-full h-full absolute inset-0", className)}>
       {star && (
         <rect
           key={star.id}
@@ -104,7 +106,8 @@ export const ShootingStars = ({
           fill="url(#gradient)"
           transform={`rotate(${star.angle}, ${
             star.x + (starWidth * star.scale) / 2
-          }, ${star.y + starHeight / 2})`} />
+          }, ${star.y + starHeight / 2})`}
+        />
       )}
       <defs>
         <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
@@ -112,6 +115,6 @@ export const ShootingStars = ({
           <stop offset="100%" style={{ stopColor: starColor, stopOpacity: 1 }} />
         </linearGradient>
       </defs>
-    </svg>)
+    </svg>
   );
 };
